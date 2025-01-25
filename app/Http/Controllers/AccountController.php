@@ -10,7 +10,7 @@ class AccountController extends Controller
 {
     public function index()
     {
-        $accounts = Account::with('transactions')->get();
+        $accounts = Account::with('transaactions')->get();
         return view('accounting.index', compact('accounts'));
     }
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,5 +25,7 @@ Route::middleware([
     Route::get('/accounting', [AccountController::class, 'index'])->name('accounting.index');
     Route::post('/accounting/account', [AccountController::class, 'createAccount'])->name('accounting.createAccount');
     Route::post('/accounting/transaction', [AccountController::class, 'createTransaction'])->name('accounting.createTransaction');
+
+    Route::get('/transactions', [TransactionController::class, 'getTransactions'])->name('transactions.index');
 
 });
