@@ -58,10 +58,10 @@
     <div id="updateModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen px-4 sm:px-0">
             <!-- Background overlay -->
-            <div class="fixed inset-0 bg-gray-600 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
 
             <!-- Modal -->
-            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden transform transition-all sm:max-w-lg sm:w-full">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all sm:max-w-lg sm:w-full">
                 <div class="px-6 py-4">
                     <!-- Modal Header -->
                     <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
@@ -95,7 +95,7 @@
                             <button type="button" onclick="toggleModal()" class="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 bg-transparent hover:text-gray-700 dark:hover:text-gray-100 rounded-md">
                                 Cancel
                             </button>
-                            <button type="submit" class="px-4 py-2 text-sm text-white bg-appColorBlue hover:bg-blue-600 dark:bg-appColorBlue dark:hover:bg-blue-500 rounded-md">
+                            <button type="submit" class="px-4 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-400 dark:hover:bg-blue-500 rounded-md">
                                 Save
                             </button>
                         </div>
@@ -110,10 +110,10 @@
     <div id="addModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen px-4 sm:px-0">
             <!-- Background overlay -->
-            <div class="fixed inset-0 bg-gray-600 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
 
             <!-- Modal -->
-            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden transform transition-all sm:max-w-lg sm:w-full">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all sm:max-w-lg sm:w-full">
                 <div class="px-6 py-4">
                     <!-- Modal Header -->
                     <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
@@ -146,7 +146,7 @@
                             <button type="button" onclick="toggleAddModal()" class="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 bg-transparent hover:text-gray-700 dark:hover:text-gray-100 rounded-md">
                                 Cancel
                             </button>
-                            <button type="submit" class="px-4 py-2 text-sm text-white bg-appColorBlue hover:bg-blue-600 dark:bg-appColorBlue dark:hover:bg-blue-500 rounded-md">
+                            <button type="submit" class="px-4 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-400 dark:hover:bg-blue-500 rounded-md">
                                 Add User
                             </button>
                         </div>

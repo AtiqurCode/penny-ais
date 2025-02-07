@@ -48,4 +48,17 @@ class AccountController extends Controller
         return redirect()->route('accounting.index')->with('success', 'Transaction added successfully.');
     }
 
+    public function show($id)
+    {
+        $account = Account::with('transactions')->findOrFail($id);
+        return view('accounting.account-show', compact('account'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $account = Account::findOrFail($id);
+        $account->update($request->all());
+        return redirect()->route('accounting.index');
+    }
+
 }
