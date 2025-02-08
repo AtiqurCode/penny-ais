@@ -21,6 +21,7 @@ class TransactionFactory extends Factory
             'amount' => $this->faker->randomFloat(2, 1, 5000),
             'type' => $this->faker->randomElement(['credit', 'debit']),
             'description' => $this->faker->sentence,
+            'created_at' => $this->faker->dateTimeBetween('-1 week', '+1 month'),
         ];
     }
 }

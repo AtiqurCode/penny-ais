@@ -17,17 +17,18 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->withPersonalTeam()->create();
 
-        // User::factory()->withPersonalTeam()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->withPersonalTeam()->create([
+            'name' => 'Test User',
+            'email' => 'test@demo.com',
+            'password' => bcrypt('123456'), // password
+        ]);
 
         // Account::factory(10)->create()->each(function ($account) {
         //     Transaction::factory(5)->create(['account_id' => $account->id]);
         // });
 
         \App\Models\Account::factory(10)->create()->each(function ($account) {
-            \App\Models\Transaction::factory(5)->create(['account_id' => $account->id]);
+            \App\Models\Transaction::factory(10)->create(['account_id' => $account->id]);
         });
     }
 }

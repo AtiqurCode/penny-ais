@@ -19,7 +19,7 @@ class AccountFactory extends Factory
         return [
             'name' => $this->faker->company,
             'type' => $this->faker->randomElement(['asset', 'liability', 'equity', 'revenue', 'expense']),
-            'balance' => $this->faker->randomFloat(2, 0, 10000),
+            'balance' => $this->faker->randomFloat(2, 0, 10000),          
         ];
     }
 }

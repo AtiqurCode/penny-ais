@@ -109,8 +109,8 @@
         const creditData = data.transactions.map(item => ({ x: item.day, y: item.total_credit }));
 
         $('#total-transactions').text(data.totalTransactions);
-        $('#total-debit').text(`$${data.totalDebit}`);
-        $('#total-credit').text(`$${data.totalCredit}`);
+        $('#total-debit').text(`৳${data.totalDebit}`);
+        $('#total-credit').text(`৳${data.totalCredit}`);
 
         const options = {
           colors: ["#1A56DB", "#FDBA8C"],
