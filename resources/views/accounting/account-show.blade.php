@@ -56,21 +56,62 @@
                             <tr>
                                 <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Description</th>
                                 <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Transaction Date</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Type</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Amount</th>
+                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Debit</th>
+                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Credit</th>
 
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
+                            @php
+                                $totalDebit = 0;
+                                $totalCredit = 0;
+                            @endphp
                             @foreach($account->transactions as $transaction)
                             <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{{ $transaction->description }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                    @if (empty($transaction->description))
+                                            {{"N/A"}}
+                                   @else 
+                                        {{$transaction->description}}
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{{ $transaction->created_at->format('h:i A d M, Y') }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{{ $transaction->type }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{{ number_format($transaction->amount, 2) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                    @if ($transaction->type == 'debit')
+                                        @php $totalDebit += $transaction->amount; @endphp
+                                        {{ number_format($transaction->amount, 2) }}
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                    @if ($transaction->type == 'credit')
+                                        @php $totalCredit += $transaction->amount; @endphp
+                                        {{ number_format($transaction->amount, 2) }}
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot class="bg-gray-50 dark:bg-gray-900">
+                            <tr>
+                                <th colspan="2" class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Closing Balance</th>
+                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider"></th>
+                                <th colspan="2" class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">{{ number_format($totalDebit - $totalCredit, 2) }}</th>
+                            </tr>
+                        <tfoot>
+                        <tfoot class="bg-gray-50 dark:bg-gray-700">
+                            <tr>
+                                <th colspan="2" class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Total</th>
+                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">{{ number_format($totalDebit, 2) }}</th>
+                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">{{ number_format($totalCredit, 2) }}</th>
+                            </tr>
+                            
+                        </tfoot>
+                        
+
                     </table>
                 </div>
             @endif
