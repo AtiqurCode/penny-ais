@@ -30,5 +30,5 @@ Route::middleware([
     Route::put('/accounting/{account}', [AccountController::class, 'update'])->name('accounts.update');
 
     Route::get('/transactions', [TransactionController::class, 'getTransactions'])->name('transactions.index');
-
+    Route::get('/transactions/statistics', [TransactionController::class, 'index']);
 });

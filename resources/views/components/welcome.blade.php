@@ -9,86 +9,204 @@
         The Accounting Information System (AIS) is designed to streamline and automate financial processes, ensuring accuracy, efficiency, and compliance. It manages key operations like bookkeeping, payroll, accounts payable/receivable, and financial reporting. With real-time data access and integration capabilities, AIS enhances decision-making and transparency, supporting businesses in achieving financial excellence.
 
     </p>
+
+    {{-- Column chart  --}}
+    <div class="w-full h-screen bg-white dark:bg-gray-800 p-4 md:p-6 mt-8">
+      <div class="flex items-center justify-center">
+        <h1 class="mt-4 text-2xl font-medium text-gray-900 dark:text-white mb-6">
+          Penny Ais Transactions Statistics
+        </h1>
+      </div>
+        <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center me-3">
+                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"> <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.6 16.733c.234.269.548.456.895.534a1.4 1.4 0 0 0 1.75-.762c.172-.615-.446-1.287-1.242-1.481-.796-.194-1.41-.861-1.241-1.481a1.4 1.4 0 0 1 1.75-.762c.343.077.654.26.888.524m-1.358 4.017v.617m0-5.939v.725M4 15v4m3-6v6M6 8.5 10.5 5 14 7.5 18 4m0 0h-3.5M18 4v3m2 8a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"/> </svg>
+                </div>
+                <div>
+                    <h5 id="total-transactions" class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">3.4k</h5>
+                    <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Total Transactions</p>
+                </div>
+            </div>
+            <div>
+                <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
+                    <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+                    </svg>
+                    42.5%
+                </span>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-2">
+            <dl class="flex items-center">
+                <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal me-1">Total Debit:</dt>
+                <dd id="total-debit" class="text-gray-900 text-sm dark:text-white font-semibold">$3,232</dd>
+            </dl>
+            <dl class="flex items-center justify-end">
+                <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal me-1">Total Credit:</dt>
+                <dd id="total-credit" class="text-gray-900 text-sm dark:text-white font-semibold">1.2%</dd>
+            </dl>
+        </div>
+        
+        <div id="column-chart" class="h-full">
+            <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+                <div class="flex justify-between items-center pt-5">
+                    <!-- Button -->
+                    {{-- <button
+                    id="dropdownDefaultButton"
+                    data-dropdown-toggle="lastDaysdropdown"
+                    data-dropdown-placement="bottom"
+                    class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                    type="button">
+                    Last 7 days
+                    <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                    </button> --}}
+                    <!-- Dropdown menu -->
+                    {{-- <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a
+                    href="#"
+                    class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                    Leads Report
+                    <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                    </a> --}}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-{{--
-<div class="bg-gray-200 dark:bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="size-6 stroke-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900 dark:text-white">
-                <a href="https://laravel.com/docs">Documentation</a>
-            </h2>
-        </div>
 
-        <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-            Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
-        </p>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $.ajax({
+      url: '/transactions/statistics',
+      method: 'GET',
+      success: function(data) {
+        const debitData = data.transactions.map(item => ({ x: item.day, y: item.total_debit }));
+        const creditData = data.transactions.map(item => ({ x: item.day, y: item.total_credit }));
 
-        <p class="mt-4 text-sm">
-            <a href="https://laravel.com/docs" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                Explore the documentation
+        $('#total-transactions').text(data.totalTransactions);
+        $('#total-debit').text(`$${data.totalDebit}`);
+        $('#total-credit').text(`$${data.totalCredit}`);
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 size-5 fill-indigo-500 dark:fill-indigo-200">
-                    <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
-                </svg>
-            </a>
-        </p>
-    </div>
+        const options = {
+          colors: ["#1A56DB", "#FDBA8C"],
+          series: [
+            {
+              name: "Total Debit",
+              color: "#1A56DB",
+              data: debitData,
+            },
+            {
+              name: "Total Credit",
+              color: "#FDBA8C",
+              data: creditData,
+            },
+          ],
+          chart: {
+            type: "bar",
+            height: "320px",
+            fontFamily: "Inter, sans-serif",
+            toolbar: {
+              show: false,
+            },
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: "70%",
+              borderRadiusApplication: "end",
+              borderRadius: 8,
+            },
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            style: {
+              fontFamily: "Inter, sans-serif",
+            },
+          },
+          states: {
+            hover: {
+              filter: {
+                type: "darken",
+                value: 1,
+              },
+            },
+          },
+          stroke: {
+            show: true,
+            width: 0,
+            colors: ["transparent"],
+          },
+          grid: {
+            show: false,
+            strokeDashArray: 4,
+            padding: {
+              left: 2,
+              right: 2,
+              top: -14
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            floating: false,
+            labels: {
+              show: true,
+              style: {
+                fontFamily: "Inter, sans-serif",
+                cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+              }
+            },
+            axisBorder: {
+              show: false,
+            },
+            axisTicks: {
+              show: false,
+            },
+          },
+          yaxis: {
+            show: false,
+          },
+          fill: {
+            opacity: 1,
+          },
+        }
 
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="size-6 stroke-gray-400">
-                <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900 dark:text-white">
-                <a href="https://laracasts.com">Laracasts</a>
-            </h2>
-        </div>
+        if(document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
+          const chart = new ApexCharts(document.getElementById("column-chart"), options);
+          chart.render();
+        }
+      }
+    });
+  });
+</script>
 
-        <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-            Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-        </p>
-
-        <p class="mt-4 text-sm">
-            <a href="https://laracasts.com" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                Start watching Laracasts
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 size-5 fill-indigo-500 dark:fill-indigo-200">
-                    <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
-                </svg>
-            </a>
-        </p>
-    </div>
-
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="size-6 stroke-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900 dark:text-white">
-                <a href="https://tailwindcss.com/">Tailwind</a>
-            </h2>
-        </div>
-
-        <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-            Laravel Jetstream is built with Tailwind, an amazing utility first CSS framework that doesn't get in your way. You'll be amazed how easily you can build and maintain fresh, modern designs with this wonderful framework at your fingertips.
-        </p>
-    </div>
-
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="size-6 stroke-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900 dark:text-white">
-                Authentication
-            </h2>
-        </div>
-
-        <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-            Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started with what matters most: building your application.
-        </p>
-    </div>
-</div> --}}
