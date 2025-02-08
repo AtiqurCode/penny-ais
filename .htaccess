@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^penny-ais.mdatiqur.me$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^penny-ais.mdatiqur.me$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
