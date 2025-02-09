@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Account;
 use App\Models\Transaction;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -35,16 +36,26 @@ class AccountController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $transaction = Transaction::create($request->all());
+        DB::beginTransaction();
+        try {
+            $transaction = Transaction::create($request->all());
 
-        // Update account balance
-        $account = $transaction->account;
-        if ($transaction->type == 'credit') {
-            $account->balance += $transaction->amount;
-        } else {
-            $account->balance -= $transaction->amount;
+            // Update account balance
+            $account = $transaction->account;
+            if ($transaction->type == 'credit') {
+                $account->balance += $transaction->amount;
+            } else {
+                $account->balance -= $transaction->amount;
+            }
+            $account->save();
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('accounting.index')->with('error', 'Transaction creation failed.');
         }
-        $account->save();
+            
+        
 
         return redirect()->route('accounting.index')->with('success', 'Transaction added successfully.');
     }
