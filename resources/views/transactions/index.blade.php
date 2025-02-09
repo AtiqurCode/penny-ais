@@ -49,7 +49,7 @@
     </div>
 
     <!-- Add Transaction Modal -->
-    <div id="addTransactionModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+    {{-- <div id="addTransactionModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen">
             <div class="bg-white dark:bg-gray-800 p-6 rounded shadow-lg w-1/3">
                 <span onclick="document.getElementById('addTransactionModal').style.display='none'" class="float-right cursor-pointer text-gray-800 dark:text-white">&times;</span>
@@ -59,6 +59,30 @@
                     <select name="account_id" class="border p-2 rounded w-full mb-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
                         @foreach(\App\Models\Account::orderBy('name')->get() as $account)
                             <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    <input type="number" name="amount" placeholder="Amount" class="border p-2 rounded w-full mb-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                    <select name="type" class="border p-2 rounded w-full mb-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                        <option value="credit">Credit</option>
+                        <option value="debit">Debit</option>
+                    </select>
+                    <input type="text" name="description" placeholder="Description" class="border p-2 rounded w-full mb-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-400 dark:hover:bg-blue-500">Add Transaction</button>
+                </form>
+            </div>
+        </div>
+    </div> --}}
+
+    <div id="addTransactionModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded shadow-lg w-1/3">
+                <span onclick="document.getElementById('addTransactionModal').style.display='none'" class="float-right cursor-pointer text-gray-800 dark:text-white">&times;</span>
+                <form method="POST" action="{{ route('accounting.createTransaction') }}">
+                    @csrf
+                    <h2 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Add New Transaction</h2>
+                    <select name="account_id" class="border p-2 rounded w-full mb-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                        @foreach(\App\Models\Account::orderBy('name')->get() as $account)
+                        <option value="{{ $account->id }}">{{ $account->name }}</option>
                         @endforeach
                     </select>
                     <input type="number" name="amount" placeholder="Amount" class="border p-2 rounded w-full mb-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
