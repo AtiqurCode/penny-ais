@@ -9,7 +9,7 @@ class TransactionController extends Controller
 {
     public function getTransactions()
     {
-        $transactions = Transaction::latest()->get();
+        $transactions = Transaction::with('account')->latest()->paginate(15);
 
         return view('transactions.index', compact('transactions'));
     }
