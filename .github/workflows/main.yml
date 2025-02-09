@@ -18,5 +18,6 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftp
+        server-dir: /home/gallaryg/penny-ais.mdatiqur.me/
         port: 22
         passive: true
