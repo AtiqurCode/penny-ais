@@ -1,4 +1,4 @@
-name: 🚀 Deploy Changes to cPanel Subdomain
+name: 🚀 Deploy Changes to cPanel
 on:
   push:
     branches:
@@ -8,16 +8,12 @@ jobs:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.1.0
       with:
         fetch-depth: 2
-    - name: SFTP Deploy to Subdomain
+    - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftp
-        server-dir: /home/gallaryg/penny-ais.mdatiqur.me/
-        port: 22
-        passive: true
