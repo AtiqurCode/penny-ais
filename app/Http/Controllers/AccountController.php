@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Account;
 use App\Models\Transaction;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AccountController extends Controller
 {
@@ -59,6 +60,26 @@ class AccountController extends Controller
         $account = Account::findOrFail($id);
         $account->update($request->all());
         return redirect()->route('accounting.index');
+    }
+
+    public function generatePDF($id)
+    {
+
+        $account = Account::findOrFail($id);
+        // Fetch all transactions
+        $transactions = Transaction::where('account_id', $id)
+                ->latest()->get();
+
+        $data = [
+            'account' => $account,
+            'transactions' => $transactions,
+        ];
+
+        // Load PDF view with data
+        $pdf = Pdf::loadView('pdf.transactions', compact('data'));
+
+        // Download as a PDF file
+        return $pdf->stream('transactions.pdf');
     }
 
 }

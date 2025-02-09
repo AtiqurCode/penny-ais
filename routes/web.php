@@ -28,7 +28,9 @@ Route::middleware([
     Route::post('/accounting/transaction', [AccountController::class, 'createTransaction'])->name('accounting.createTransaction');
     Route::get('/accounting/{account}', [AccountController::class, 'show'])->name('accounts.show');
     Route::put('/accounting/{account}', [AccountController::class, 'update'])->name('accounts.update');
+    Route::get('accounting/{account}/transactions/pdf', [AccountController::class, 'generatePDF']);
 
     Route::get('/transactions', [TransactionController::class, 'getTransactions'])->name('transactions.index');
     Route::get('/transactions/statistics', [TransactionController::class, 'index']);
+
 });
