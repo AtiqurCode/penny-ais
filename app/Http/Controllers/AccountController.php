@@ -79,7 +79,7 @@ class AccountController extends Controller
         $pdf = Pdf::loadView('pdf.transactions', compact('data'));
 
         // Download as a PDF file
-        return $pdf->stream('transactions.pdf');
+        return $pdf->stream($account->name.'-transactions-' . date('Y-m-d') . '.pdf');
     }
 
 }

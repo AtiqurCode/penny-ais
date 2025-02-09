@@ -17,7 +17,7 @@
                     <div class="mb-12">
                         <h2 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-white">All Accounts</h2>
                         <table class="w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
+                            <thead class="bg-gray-200 dark:bg-gray-700">
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-300 uppercase tracking-wider">Name</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-300 uppercase tracking-wider">Type</th>

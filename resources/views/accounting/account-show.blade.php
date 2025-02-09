@@ -50,12 +50,19 @@
             @else
                 <!-- Transactions Table -->
                 <div class="mb-12">
-                <h2 class="text-2xl mb-4 text-gray-800 dark:text-white"> <span class="font-semibold">{{ $account->name }}</span> transactions</h2>
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl text-gray-800 dark:text-white">
+                            <span class="font-semibold">{{ $account->name }}</span> transactions
+                        </h2>
+                        <button onclick="window.location.href='{{ url('accounting/' . $account->id . '/transactions/pdf') }}'" class="bg-appColorBlue text-white px-4 py-2 rounded">
+                            Generate Transactions Report (PDF)
+                        </button>
+                    </div>
                     <table class="w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
+                        <thead class="bg-gray-200 dark:bg-gray-700">
                             <tr>
                                 <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Description</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Transaction Date</th>
+                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Date</th>
                                 <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Debit</th>
                                 <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Credit</th>
 
@@ -75,7 +82,7 @@
                                         {{$transaction->description}}
                                     @endif
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{{ $transaction->created_at->format('h:i A d M, Y') }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{{ $transaction->created_at->format('d M, Y') }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                     @if ($transaction->type == 'debit')
                                         @php $totalDebit += $transaction->amount; @endphp
