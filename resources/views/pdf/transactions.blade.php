@@ -38,7 +38,9 @@
 
 <body>
     <h1 style="color: #5046e5;">Penny Ais</h1>
-    <p><span style="color: dark; font-weight: bold">{{ $data['account']->name }}</span> Account Transactions</h4>
+    <h4 style="">AcN: {{$data['account']->account_number}}</h4>
+    <p><span style="color: dark; font-weight: bold">{{ $data['account']->name }}</span> Account Transactions
+        </h4>
         @if($data['account']->transactions->isEmpty())
             <p>There are no transactions for this user.</p>
         @else
