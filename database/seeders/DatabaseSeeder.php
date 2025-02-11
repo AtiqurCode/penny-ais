@@ -35,8 +35,16 @@ class DatabaseSeeder extends Seeder
         });
 
         // I want every account balance transactions as credit when it's created
+        // Create additional transactions and update account balance
         foreach (Account::all() as $account) {
-            \App\Models\Transaction::factory(10)->create(['account_id' => $account->id]);
+            \App\Models\Transaction::factory(10)->create(['account_id' => $account->id])->each(function ($transaction) use ($account) {
+                if ($transaction->type == 'credit') {
+                    $account->balance += $transaction->amount;
+                } else if ($transaction->type == 'debit') {
+                    $account->balance -= $transaction->amount;
+                }
+                $account->save();
+            });
         }
         // \App\Models\Account::factory(10)->create()->each(function ($account) {
             
