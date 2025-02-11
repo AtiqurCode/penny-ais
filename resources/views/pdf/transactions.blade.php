@@ -96,7 +96,7 @@
                     <tr>
                         <th colspan="2">Closing Balance</th>
                         <th></th>
-                        <th>{{ number_format($totalDebit - $totalCredit, 2) }}</th>
+                        <th>{{ number_format($totalCredit - $totalDebit, 2) }}</th>
                     </tr>
                 </tfoot>
             </table>

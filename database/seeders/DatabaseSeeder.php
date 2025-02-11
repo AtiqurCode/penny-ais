@@ -23,12 +23,23 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456'), // password
         ]);
 
-        // Account::factory(10)->create()->each(function ($account) {
-        //     Transaction::factory(5)->create(['account_id' => $account->id]);
-        // });
+        /// I want every account balance transactions as credit when it's created
 
-        \App\Models\Account::factory(10)->create()->each(function ($account) {
-            \App\Models\Transaction::factory(10)->create(['account_id' => $account->id]);
+        Account::factory(count: 10)->create()->each(function ($account) {
+            Transaction::create([
+                'account_id' => $account->id,
+                'amount' => $account->balance,
+                'type' => 'credit',
+                'description'=> $account->name . ' account created with initial balance',
+            ]);
         });
+
+        // I want every account balance transactions as credit when it's created
+        foreach (Account::all() as $account) {
+            \App\Models\Transaction::factory(10)->create(['account_id' => $account->id]);
+        }
+        // \App\Models\Account::factory(10)->create()->each(function ($account) {
+            
+        // });
     }
 }

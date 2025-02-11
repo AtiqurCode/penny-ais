@@ -23,7 +23,17 @@ class AccountController extends Controller
             'type' => 'required|in:asset,liability,equity,revenue,expense',
         ]);
 
-        Account::create($request->all());
+        try {
+            $account = Account::create($request->all());
+            $transaction = new Transaction();
+            $transaction->description = $request->name . ' account created';
+            $transaction->type = 'credit';
+            $transaction->amount = $request->balance;
+            $transaction->account_id = $account->id;
+            $transaction->save();
+        } catch (\Exception $e) {
+            return redirect()->route('accounting.index')->with('error', 'Account creation failed.');
+        }
         return redirect()->route('accounting.index')->with('success', 'Account created successfully.');
     }
 

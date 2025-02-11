@@ -36,92 +36,120 @@
                                 </div>
                             </div>
                             <div>
-                                <a href="{{ route('accounting.index') }}" class="ml-4 text-sm text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100">Back to Accounting</a>
-                                <button onclick="toggleUpdateAccountModal('{{ $account->id }}', '{{ $account->name }}', '{{ $account->type }}')" class="ml-4 text-sm text-blue-500 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100">Update Account</button>
+                                <a href="{{ route('accounting.index') }}"
+                                    class="ml-4 text-sm text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100">Back
+                                    to Accounting</a>
+                                <button
+                                    onclick="toggleUpdateAccountModal('{{ $account->id }}', '{{ $account->name }}', '{{ $account->type }}')"
+                                    class="ml-4 text-sm text-blue-500 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100">Update
+                                    Account</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-            <!-- Transactions Table -->
-            @if($account->transactions->isEmpty())
-                <p class=" text-xl text-gray-500 dark:text-gray-300">There are no transactions for this user.</p>
-            @else
                 <!-- Transactions Table -->
-                <div class="mb-12">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-2xl text-gray-800 dark:text-white">
-                            <span class="font-semibold">{{ $account->name }}</span> transactions
-                        </h2>
-                        <button onclick="window.location.href='{{ url('accounting/' . $account->id . '/transactions/pdf') }}'" class="bg-appColorBlue text-white px-4 py-2 rounded">
-                            Generate Transactions Report (PDF)
-                        </button>
-                    </div>
-                    <table class="w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-200 dark:bg-gray-700">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Description</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Date</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Debit</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Credit</th>
+                @if($account->transactions->isEmpty())
+                    <p class=" text-xl text-gray-500 dark:text-gray-300">There are no transactions for this user.</p>
+                @else
+                                <!-- Transactions Table -->
+                                <div class="mb-12">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h2 class="text-2xl text-gray-800 dark:text-white">
+                                            <span class="font-semibold">{{ $account->name }}</span> transactions
+                                        </h2>
+                                        <button
+                                            onclick="window.location.href='{{ url('accounting/' . $account->id . '/transactions/pdf') }}'"
+                                            class="bg-appColorBlue text-white px-4 py-2 rounded">
+                                            Generate Transactions Report (PDF)
+                                        </button>
+                                    </div>
+                                    <table class="w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-200 dark:bg-gray-700">
+                                            <tr>
+                                                <th
+                                                    class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                    Description</th>
+                                                <th
+                                                    class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                    Date</th>
+                                                <th
+                                                    class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                    Debit</th>
+                                                <th
+                                                    class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                    Credit</th>
 
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
-                            @php
-                                $totalDebit = 0;
-                                $totalCredit = 0;
-                            @endphp
-                            @foreach($account->transactions as $transaction)
-                            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                                    @if (empty($transaction->description))
-                                            {{"N/A"}}
-                                   @else 
-                                        {{$transaction->description}}
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{{ $transaction->created_at->format('d M, Y') }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                                    @if ($transaction->type == 'debit')
-                                        @php $totalDebit += $transaction->amount; @endphp
-                                        {{ number_format($transaction->amount, 2) }}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                                    @if ($transaction->type == 'credit')
-                                        @php $totalCredit += $transaction->amount; @endphp
-                                        {{ number_format($transaction->amount, 2) }}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot class="bg-gray-50 dark:bg-gray-900">
-                            <tr>
-                                <th colspan="2" class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Closing Balance</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider"></th>
-                                <th colspan="2" class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">{{ number_format($totalDebit - $totalCredit, 2) }}</th>
-                            </tr>
-                        <tfoot>
-                        <tfoot class="bg-gray-50 dark:bg-gray-700">
-                            <tr>
-                                <th colspan="2" class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">Total</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">{{ number_format($totalDebit, 2) }}</th>
-                                <th class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">{{ number_format($totalCredit, 2) }}</th>
-                            </tr>
-                            
-                        </tfoot>
-                        
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
+                                            @php
+                                                $totalDebit = 0;
+                                                $totalCredit = 0;
+                                            @endphp
+                                            @foreach($account->transactions as $transaction)
+                                                <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                                        @if (empty($transaction->description))
+                                                            {{"N/A"}}
+                                                        @else
+                                                            {{$transaction->description}}
+                                                        @endif
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                                        {{ $transaction->created_at->format('d M, Y') }}</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                                        @if ($transaction->type == 'debit')
+                                                            @php $totalDebit += $transaction->amount; @endphp
+                                                            {{ number_format($transaction->amount, 2) }}
+                                                        @else
+                                                            {{ '-' }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                                        @if ($transaction->type == 'credit')
+                                                            @php $totalCredit += $transaction->amount; @endphp
+                                                            {{ number_format($transaction->amount, 2) }}
+                                                        @else
+                                                            {{ '-' }}
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot class="bg-gray-50 dark:bg-gray-900">
+                                            <tr>
+                                                <th colspan="2"
+                                                    class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                    Closing Balance</th>
+                                                <th
+                                                    class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                </th>
+                                                <th colspan="2"
+                                                    class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                    {{ number_format($totalCredit - $totalDebit, 2) }}</th>
+                                            </tr>
+                                            <tfoot>
+                                                <tfoot class="bg-gray-50 dark:bg-gray-700">
+                                                    <tr>
+                                                        <th colspan="2"
+                                                            class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                            Total</th>
+                                                        <th
+                                                            class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                            {{ number_format($totalDebit, 2) }}</th>
+                                                        <th
+                                                            class="px-6 py-3 text-left text-x font-semibold text-gray-500 dark:text-gray-300  tracking-wider">
+                                                            {{ number_format($totalCredit, 2) }}</th>
+                                                    </tr>
 
-                    </table>
-                </div>
-            @endif
+                                                </tfoot>
+
+
+                                    </table>
+                                </div>
+                @endif
             </div>
         </div>
 
@@ -133,14 +161,18 @@
                 <div class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
 
                 <!-- Modal -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all sm:max-w-lg sm:w-full">
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all sm:max-w-lg sm:w-full">
                     <div class="px-6 py-4">
                         <!-- Modal Header -->
-                        <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
                             <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">Update Account</h3>
-                            <button onclick="toggleUpdateAccountModal()" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+                            <button onclick="toggleUpdateAccountModal()"
+                                class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
@@ -152,14 +184,20 @@
 
                             <!-- Name Field -->
                             <div class="mb-4">
-                                <label for="account_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
-                                <input type="text" name="name" id="account_name" class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 sm:text-sm bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100" required />
+                                <label for="account_name"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+                                <input type="text" name="name" id="account_name"
+                                    class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 sm:text-sm bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                                    required />
                             </div>
 
                             <!-- Type Field -->
                             <div class="mb-4">
-                                <label for="account_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
-                                <select name="type" id="account_type" class="border p-2 rounded w-full mb-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                                <label for="account_type"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
+                                <select name="type" id="account_type"
+                                    class="border p-2 rounded w-full mb-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                                    required>
 
                                     <option value="asset">Asset</option>
                                     <option value="liability">Liability</option>
@@ -171,10 +209,12 @@
 
                             <!-- Actions -->
                             <div class="flex justify-end space-x-3">
-                                <button type="button" onclick="toggleUpdateAccountModal()" class="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 bg-transparent hover:text-gray-700 dark:hover:text-gray-100 rounded-md">
+                                <button type="button" onclick="toggleUpdateAccountModal()"
+                                    class="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 bg-transparent hover:text-gray-700 dark:hover:text-gray-100 rounded-md">
                                     Cancel
                                 </button>
-                                <button type="submit" class="px-4 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-400 dark:hover:bg-blue-500 rounded-md">
+                                <button type="submit"
+                                    class="px-4 py-2 text-sm text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-400 dark:hover:bg-blue-500 rounded-md">
                                     Save
                                 </button>
                             </div>
