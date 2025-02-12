@@ -101,10 +101,10 @@ You can now access the project on `http://127.0,0.1:8000` on your browser or any
 ## Project Screenshots & Demo
 
 1. Login Page
-- (https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-5.png)
+- ![Login Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-5.png)
 - ![Register Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-6.png)
-- [Dashboard Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-4.png)
-- [Account Management Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-3.png)
-- [Transactions create Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-2.png)
-- [Transactions Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-1.png)
-- [Demo Video](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/Penny%20Ais%20app%20overview.mp4)
+- ![Dashboard Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-4.png)
+- ![Account Management Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-3.png)
+- ![Transactions create Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-2.png)
+- ![Transactions Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-1.png)
+- ![Demo Video](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/Penny%20Ais%20app%20overview.mp4)
