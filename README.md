@@ -110,3 +110,12 @@ You can now access the project on `http://127.0,0.1:8000` on your browser or any
 
 ## Project Demo
 - [Penny Ais](https://drive.google.com/file/d/1AxCHIuer0EVcl1DyKyn93z0dq3rXRsqh/view)
+
+## Project URL
+- https://penny-ais.mdatiqur.me
+- Credential: 
+    - Email: test@demo.com
+    - Password: 123456
+
+## Project License
+- We own the rights to this project and it is free to use for any purpose.
