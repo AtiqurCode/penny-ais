@@ -1,0 +1,16 @@
+name: Protect Repo
+
+on: push
+
+jobs:
+  check-user:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Commit Author
+        run: |
+          AUTHOR=$(git log -1 --pretty=format:'%ae')
+          if [[ "$AUTHOR" != "atqur9@gmail.com" ]]; then
+            echo "Unauthorized commit detected. Reverting..."
+            git reset --hard HEAD~1
+            git push --force
+          fi
