@@ -86,9 +86,11 @@ Please go throw this all steps to run this project on your local machine.
 4. Run `npm run dev` to compile the assets.
 5. Run `php artisan migrate` to migrate the database.
 6. Run `php artisan db:seed` to seed the database.
-7. Run `php artisan serve` to run the project on your local machine.
+7. Run `npm install` to install all the node modules.
+8. Run `npm run build` to compile the assets.
+9. Run `php artisan serve` to run the project on your local machine.
 
-You can now access the project on `http://127.0,0.1:8000` on your browser or any port you have set from the terminal.
+You can now access the project on `http://127.0.0.1:8000` on your browser or any port you have set from the terminal.
 
 ## Project Features
 1. User Management
