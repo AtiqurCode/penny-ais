@@ -29,9 +29,9 @@ You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Penny Ais Accounting system free and open source applications
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+<!-- We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
 ### Premium Partners
 
@@ -63,4 +63,48 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
+
+## Project Installation requirements
+1. PHP 8.2 or higher
+2. Composer
+3. Node.js 18.0 or higher
+4. NPM 8.0 or higher
+5. MySQL 8.0 or higher
+6. Laravel version 11.31 
+
+## Project Installation steps
+Please go throw this all steps to run this project on your local machine.
+
+1. Clone the project from the repository.
+2. Run `composer install` to install all the dependencies.
+3. Run `npm install` to install all the node modules.
+4. Run `npm run dev` to compile the assets.
+5. Run `php artisan migrate` to migrate the database.
+6. Run `php artisan db:seed` to seed the database.
+7. Run `php artisan serve` to run the project on your local machine.
+
+You can now access the project on `http://127.0,0.1:8000` on your browser or any port you have set from the terminal.
+
+## Project Features
+1. User Management
+2. Role Management
+3. Permission Management
+4. Company Management
+5. Team Management
+6. Account Management
+7. Transaction Management
+8. Report in dashboard
+9. individual account report & pdf generate
+
+
+## Project Screenshots & Demo
+
+1. Login Page
+- [Login Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-5.png)
+- [Register Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-6.png)
+- [Dashboard Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-4.png)
+- [Account Management Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-3.png)
+- [Transactions create Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-2.png)
+- [Transactions Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-1.png)
+- [Demo Video](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/Penny%20Ais%20app%20overview.mp4)
