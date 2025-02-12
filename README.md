@@ -107,4 +107,4 @@ You can now access the project on `http://127.0,0.1:8000` on your browser or any
 - ![Account Management Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-3.png)
 - ![Transactions create Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-2.png)
 - ![Transactions Page](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/penny-ais-1.png)
-- ![Demo Video](https://github.com/AtiqurCode/penny-ais/blob/master/public/files/Penny%20Ais%20app%20overview.mp4)
+- ![Demo Video](https://drive.google.com/file/d/1AxCHIuer0EVcl1DyKyn93z0dq3rXRsqh/view)
